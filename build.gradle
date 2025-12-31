@@ -48,6 +48,8 @@ java {
 }
 
 jar {
+	inputs.property "archivesName", project.base.archivesName
+
 	from("LICENSE") {
 		rename { "${it}_${project.base.archivesName.get()}"}
 	}
@@ -56,7 +58,8 @@ jar {
 // configure the maven publication
 publishing {
 	publications {
-		create(MavenPublication) {
+		create("mavenJava", MavenPublication) {
+			artifactId = project.archives_base_name
 			from components.java
 		}
 	}
