@@ -1,6 +1,8 @@
 package io.github.bd103.ticklowerperm.mixin;
 
+import net.minecraft.commands.Commands;
 import net.minecraft.server.commands.TickCommand;
+import net.minecraft.server.permissions.PermissionCheck;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,15 +15,15 @@ public abstract class TickCommandMixin {
     // Replace the argument representing the permission level from 3 to 2, allowing command blocks to run it.
     @ModifyArg(
         method = "register(Lcom/mojang/brigadier/CommandDispatcher;)V",
-        at = @At(value = "INVOKE", target = "hasPermission(I)Lnet/minecraft/server/commands/PermissionCheck;"),
+        at = @At(value = "INVOKE", target = "hasPermission(Lnet/minecraft/server/permissions/PermissionCheck;)Lnet/minecraft/server/permissions/PermissionProviderCheck;"),
         index = 0
     )
-    private static int permissionLevel(int value) {
-        if (value != 3) {
+    private static PermissionCheck permissionLevel(PermissionCheck value) {
+        if (value != Commands.LEVEL_ADMINS) {
             Logger logger = LoggerFactory.getLogger("ticklowerperm");
-            logger.warn("Expected /tick permission level to be 3, but it was " + value + " instead. Continuing to override it to 2.");
+            logger.warn("Expected /tick permission check to be `LEVEL_ADMINS`, but it was " + value + " instead. Continuing to override it to `LEVEL_GAMEMASTERS`.");
         }
 
-        return 2;
+        return Commands.LEVEL_GAMEMASTERS;
     }
 }
