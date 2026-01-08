@@ -13,7 +13,7 @@ public abstract class TickCommandMixin {
     // Replace the argument representing the permission level from 3 to 2, allowing command blocks to run it.
     @ModifyArg(
         method = "register(Lcom/mojang/brigadier/CommandDispatcher;)V",
-        at = @At(value = "INVOKE", target = "hasPermission(I)Lnet/minecraft/server/commands/PermissionCheck;"),
+        at = @At(value = "INVOKE", target = "Lnet/minecraft/commands/Commands;hasPermission(I)Lnet/minecraft/server/commands/PermissionCheck;"),
         index = 0
     )
     private static int permissionLevel(int value) {
