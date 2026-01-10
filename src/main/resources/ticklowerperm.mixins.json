@@ -1,9 +1,9 @@
 {
 	"required": true,
-	"package": "io.github.bd103.ticklowerperm.mixin",
+	"package": "dev.bd103.ticklowerperm.mixin",
 	"compatibilityLevel": "JAVA_25",
 	"mixins": [
-		"TickCommandMixin"
+      "TickCommandMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

@@ -1,4 +1,4 @@
-package io.github.bd103.ticklowerperm.mixin;
+package dev.bd103.ticklowerperm.mixin;
 
 import net.minecraft.commands.Commands;
 import net.minecraft.server.commands.TickCommand;
