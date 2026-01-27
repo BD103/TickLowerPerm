@@ -21,7 +21,7 @@ public abstract class TickCommandMixin {
     private static PermissionCheck permissionLevel(PermissionCheck value) {
         if (value != Commands.LEVEL_ADMINS) {
             Logger logger = LoggerFactory.getLogger("ticklowerperm");
-            logger.warn("Expected /tick permission check to be `LEVEL_ADMINS`, but it was " + value + " instead. Continuing to override it to `LEVEL_GAMEMASTERS`.");
+            logger.warn("Expected /tick permission check to be `LEVEL_ADMINS`, but it was {} instead. Continuing to override it to `LEVEL_GAMEMASTERS`.", value);
         }
 
         return Commands.LEVEL_GAMEMASTERS;
